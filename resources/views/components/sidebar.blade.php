@@ -1,17 +1,26 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="/dashboard">Tambang Nikel</a>
+            <a href="{{ route('dashboard.attendances.clock-in') }}">Simple Attendance</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="/dashboard">TN</a>
+            <a href="{{ route('dashboard.attendances.clock-in') }}">SA</a>
         </div>
         <ul class="sidebar-menu">
-            <li class="menu-header">Dashboard</li>
-            {{-- <li class="{{ request()->routeIs('dashboard.') ? 'active' : '' }}"><a href="/dashboard" class="nav-link"><i
-                        class="fas fa-fire"></i><span>Dashboard</span></a>
+            <li class="menu-header">Attendance</li>
+            <li class="{{ request()->routeIs('dashboard.attendances.clock-in') ? 'active' : '' }}"><a href="{{ route('dashboard.attendances.clock-in') }}" class="nav-link"><i class="fas fa-box-open"></i><span>Attendance</span></a>
             </li>
-            @can('hasRole', 'admin')
+            <li class="{{ request()->routeIs('dashboard.attendances.my-attendance') ? 'active' : '' }}"><a href="{{ route('dashboard.attendances.my-attendance') }}" class="nav-link"><i class="fas fa-box-open"></i><span>My Attendance</span></a>
+            </li>
+
+            @role('admin')
+                <li class="menu-header">Master</li>
+                <li class="{{ request()->routeIs('dashboard.employees.*') ? 'active' : '' }}"><a href="{{ route('dashboard.employees.index') }}" class="nav-link"><i class="fas fa-box-open"></i><span>Employee</span></a>
+                <li class="{{ request()->routeIs('dashboard.users.*') ? 'active' : '' }}"><a href="{{ route('dashboard.users.index') }}" class="nav-link"><i class="fas fa-box-open"></i><span>User</span></a>
+                </li>
+            @endrole
+
+            {{-- @can('hasRole', 'admin')
 
             <li class="menu-header">Master</li>
             <li class="{{ request()->routeIs('dashboard.mines.*') ? 'active' : '' }}"><a
@@ -30,8 +39,8 @@
                     href="{{ route('dashboard.vehicles.index') }}" class="nav-link"><i
                         class="fas fa-box-open"></i><span>Kendaraan</span></a>
             </li>
-            @endcan
-            <li class="menu-header">Orders</li>
+            @endcan --}}
+            {{-- <li class="menu-header">Orders</li>
             <li class="{{ request()->routeIs('dashboard.orders.*') ? 'active' : '' }}"><a
                     href="{{ route('dashboard.orders.index') }}" class="nav-link"><i
                         class="fas fa-box-open"></i><span>Pemesanan Kendaraan</span></a>

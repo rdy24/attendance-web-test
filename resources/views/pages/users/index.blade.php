@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Tambang | {{ config('app.name') }}
+User | {{ config('app.name') }}
 @endsection
 
 @push('css-libraries')
@@ -11,10 +11,10 @@ Tambang | {{ config('app.name') }}
 
 @section('content')
 <div class="section-header">
-    <h1>Tambang</h1>
+    <h1>User</h1>
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="{{ route('dashboard.') }}">Dashboard</a></div>
-        <div class="breadcrumb-item">Tambang</div>
+        <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+        <div class="breadcrumb-item">User</div>
     </div>
 </div>
 
@@ -22,40 +22,34 @@ Tambang | {{ config('app.name') }}
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-body d-flex justify-content-between">
-                    <a href="{{ route('dashboard.mines.create') }}" class="btn btn-primary"><i class="fas fa-plus"
-                            aria-hidden="true"></i>
-                        Tambah Data</a>
-                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped" id="table-1">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Tambang</th>
-                                    <th>Alamat</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($mines as $mine)
+                                @foreach ($users as $user)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $mine->name }}</td>
-                                    <td>{{ $mine->address }}</td>
-                                    <td>{{ $mine->status }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->status }}</td>
                                     <td>
-                                        <a href="{{ route('dashboard.mines.edit', $mine->id) }}"
+                                        <a href="{{ route('dashboard.users.edit', $user->id) }}"
                                             class="btn btn-warning btn-sm"><i class="fas fa-pen"></i>
                                         </a>
-                                        <form action="{{ route('dashboard.mines.destroy', $mine->id) }}" method="post"
+                                        <form action="{{ route('dashboard.users.update-status', $user->id) }}" method="post"
                                             class="d-inline">
                                             @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                data-confirm-delete="true"><i class="fas fa-trash"></i>
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ubah status saat ini?')"><i class="fas fa-trash"></i>
                                             </button>
                                         </form>
                                     </td>
