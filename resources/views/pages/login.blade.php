@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <div class="simple-footer">
-                            Copyright &copy; My Website 2023
+                            Copyright &copy; Attendance Web {{ date('Y') }}
                         </div>
                     </div>
                 </div>
