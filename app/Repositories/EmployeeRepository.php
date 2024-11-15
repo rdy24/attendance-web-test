@@ -27,11 +27,13 @@ class EmployeeRepository
         try {
             DB::beginTransaction();
 
-            $user = $this->userModel->create([
+            $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
             ]);
+
+            $user->assignRole($data['role']);
 
             $employee = $this->model->create([
                 'user_id' => $user->id,
@@ -39,8 +41,6 @@ class EmployeeRepository
                 'city' => $data['city'],
                 'status' => $data['status'],
             ]);
-
-            $user->assignRole($data['role']);
 
             DB::commit();
 
