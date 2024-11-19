@@ -70,7 +70,7 @@ Edit Attendance | {{ config('app.name') }}
                         </div>
 
                         <button type="submit" class="btn btn-primary">Simpan</button>
-                        <a href="{{ route('dashboard.attendances.index') }}" class="btn btn-outline-primary">Batal</a>
+                        <a href="" class="btn btn-outline-primary">Batal</a>
                     </form>
                 </div>
             </div>
